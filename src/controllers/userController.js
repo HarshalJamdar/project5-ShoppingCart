@@ -200,6 +200,7 @@ const getProfileData = async function (req, res) {
         }
 
     //==checking and validating address==//
+    if(address){
         if (!isValid(address)) { return res.status(400).send({ status: false, message: " address is not valid" }) }
         else if (address) {
             let address1= JSON.parse(address) 
@@ -221,7 +222,7 @@ const getProfileData = async function (req, res) {
                     findAddress.address.shipping.pincode=pincode
                 }
             }
-
+        
         
         //==checking and validating billing address- street,city,pincode==//
             if(address1.billing){
@@ -242,12 +243,7 @@ const getProfileData = async function (req, res) {
              updateData.address = findAddress.address
         }
 
-    
-    //==checking and validating file(image)==//
-        if (formData == "") { return res.status(400).send({ status: false, message: "image is not valid" }) }
-        else if (formData) {
-            if(!isValidFile(formData[0].originalname))  return res.status(400).send({ status: false, message: "Please provide image only" })
-        }
+    }
 
     //==updating user details==//    
          const updateDetails = await userModel.findByIdAndUpdate({ _id: userId }, updateData, { new: true })

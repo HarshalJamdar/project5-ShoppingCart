@@ -80,11 +80,8 @@ const getProduct = async function (req, res) {
             }
 
             if (name) {
-                let findTitle = await productModel.find()
-                let fTitle = findTitle.map(x => x.title).filter(x => x.includes(name))
-
-                if (fTitle.length == 0) { filterQuery.title = name }
-                filterQuery.title = { $in: fTitle }
+                
+                filterQuery.title = name.toUpperCase()
             }
 
             if (priceSort){
