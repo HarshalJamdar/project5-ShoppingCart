@@ -1,6 +1,9 @@
 # projectXYZ
 #Thorium
 
+## run command-
+>>>  node index.js
+
 ## Project - Products Management
 
 ### Key points
