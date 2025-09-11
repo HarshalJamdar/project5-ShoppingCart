@@ -1,22 +1,25 @@
-const express = require('express')
+const express = require('express');
 const multer = require('multer');
-const bodyParser = require('body-parser')
-const route = require('./routes/route')
-const mongoose = require('mongoose')
-const app = express()
+const bodyParser = require('body-parser');
+const route = require('./routes/route');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use( multer().any())
+const app = express();
 
-mongoose.connect("mongodb+srv://pragya_user1:tfr9Y2SlmidKsL1L@cluster0.e7bog.mongodb.net/group24Database?retryWrites=true&w=majority", {
-    usenewurlParser: true
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer().any());
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
 })
 .then(() => console.log("MongoDb is connected..."))
-.catch(error => console.log(error)) 
+.catch(error => console.log(error));
 
-app.use("/", route)
+app.use("/", route);
 
-app.listen(process.env.PORT || 3000, function(){
-    console.log("Express app running on port " + (process.env.PORT || 3000))
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+    console.log("Express app running on port " + PORT);
+});
