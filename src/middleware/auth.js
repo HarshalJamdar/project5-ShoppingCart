@@ -22,8 +22,6 @@ let authentication = function (req, res, next) {
     }
 }
 
-//**********************************************************************//
-
 const authorization = async function (req, res, next) {
     try {
         let tokenId = req.userId;
@@ -42,8 +40,4 @@ const authorization = async function (req, res, next) {
     }
 }
 
-//**********************************************************************//
-
  module.exports = { authentication ,authorization}
-
-//**********************************************************************//
