@@ -22,17 +22,6 @@ const createProduct = async (req, res) => {
         .status(400)
         .send({ status: false, message: "No data provided" });
 
-    //validating files
-    let files = req.files;
-    if (files.length == 0)
-      return res
-        .status(400)
-        .send({ status: false, message: "Please provide a product image" });
-    if (!isValidFile(files[0].originalname))
-      return res
-        .status(400)
-        .send({ status: false, message: "Please provide image only" });
-
     //validating title
     if (!isValid(data.title))
       return res
@@ -140,9 +129,6 @@ const createProduct = async (req, res) => {
           message: "Please provide installments for your product",
         });
 
-    //uploading product picture
-    const uploadedFileURL = await aws.uploadFile(files[0]);
-    data.productImage = uploadedFileURL;
 
     //creating and sending product details
     const newData = await productModel.create(data);
@@ -288,15 +274,6 @@ const updateProductDetails = async function (req, res) {
     let { title, description, price, style, availableSizes, installments } =
       updateData;
 
-    //validating & uploading image if given
-    if (image && image.length > 0) {
-      if (!isValidFile(image[0].originalname))
-        return res
-          .status(400)
-          .send({ status: false, message: "Please provide image only" });
-      let updateProductImage = await aws.uploadFile(image[0]);
-      updateData.productImage = updateProductImage;
-    }
 
     //validating title if given
     if (title == "") {

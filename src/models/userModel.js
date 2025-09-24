@@ -18,11 +18,6 @@ email: {
     unique:true,
     trim:true,
 },
-profileImage: {
-    type:String,
-    required:true,
-    trim:true,
-}, // s3 link
 phone: {
     type:String,
     required:true,

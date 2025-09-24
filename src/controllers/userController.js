@@ -133,25 +133,11 @@ const registerUser = async function (req, res) {
     const salt = await bcrypt.genSalt(10);
     password = await bcrypt.hash(password, salt);
 
-    //validating and uploading image (getting profile image url)
-    let files = req.files;
-    if (files && files.length > 0) {
-      if (!isValidFile(files[0].originalname))
-        return res
-          .status(400)
-          .send({ status: false, message: "Please provide image only" });
-      let uploadedFileURL = await aws.uploadFile(files[0]);
-      profileImage = uploadedFileURL;
-    } else {
-      res.status(400).send({ msg: "file is required." });
-    }
-
     //creating user
     const userData = {
       fname,
       lname,
       email,
-      profileImage,
       phone,
       password,
       address,
@@ -280,11 +266,6 @@ const updateUserDetails = async function (req, res) {
         .status(400)
         .send({ status: false, msg: "please provide data to update" });
     const { address, fname, lname, email, phone, password } = updateData;
-
-    if (formData.length !== 0) {
-      let updateProfileImage = await aws.uploadFile(formData[0]);
-      updateData.profileImage = updateProfileImage;
-    }
 
     //checking and validating fname
     if (fname == "") {
