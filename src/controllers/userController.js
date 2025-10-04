@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
-const aws = require("../utilities/aws");
 const bcrypt = require("bcrypt");
 const {
   isValidRequestBody,

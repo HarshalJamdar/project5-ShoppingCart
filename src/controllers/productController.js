@@ -1,5 +1,4 @@
 const productModel = require("../models/productModel");
-const aws = require("../utilities/aws");
 const {
   isValidRequestBody,
   isValidNum,
@@ -251,7 +250,6 @@ const getProductById = async function (req, res) {
 const updateProductDetails = async function (req, res) {
   try {
     const productId = req.params.productId;
-    const image = req.files;
     let updateData = req.body;
 
     //validating productId
