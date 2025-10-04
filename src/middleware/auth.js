@@ -9,7 +9,7 @@ let authentication = function (req, res, next) {
   
         if (!token) return res.status(400).send({ status: false, message: "Token is required" })
     
-        let decodedToken = jwt.verify(token.split(" ")[1], "Group 24 project",(err, decoded) => {    
+        let decodedToken = jwt.verify(token.split(" ")[1], process.env.JWT_KEY,(err, decoded) => {    
         if (!decoded) {
         return res.status(401).send({ status: false, message: "Invalid token", err: err.message })
         } else {
