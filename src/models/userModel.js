@@ -44,8 +44,6 @@ address: {
     pincode: {type:Number, required:true}
   },
 }, 
-},{ timestamps:true }
+},{ timestamps:true });
 
-)
-
-module.exports=mongoose.model("newUser", newUserSchema)
+module.exports=mongoose.model("newUser", newUserSchema);

@@ -1,4 +1,4 @@
-const ObjectId = require("mongoose").Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 
 
 let isValidRequestBody = function (body) {
@@ -7,8 +7,8 @@ let isValidRequestBody = function (body) {
 };
 
 let isValid = function (value) {
-  if (typeof value === "undefined" || value === null) return false;
-  if (typeof value === "string" && value.trim().length === 0) return false;
+  if (typeof value === 'undefined' || value === null) return false;
+  if (typeof value === 'string' && value.trim().length === 0) return false;
   return true;
 };
 
@@ -45,7 +45,7 @@ let isValidPrice = function (price) {
 
 
 let isValidEnum = function (value) {
-  let availableSizes = ["S", "XS", "M", "X", "L", "XXL", "XL"];
+  let availableSizes = ['S', 'XS', 'M', 'X', 'L', 'XXL', 'XL'];
   return availableSizes.includes(value);
 };
 
@@ -63,12 +63,12 @@ const isValidFile = function (files) {
 };
 
 const isValidStatus = (status) => {
-  let correctStatus = ["pending", "completed", "cancled"];
+  let correctStatus = ['pending', 'completed', 'cancled'];
   return correctStatus.includes(status);
 };
 
 const isValidSize = (Size) => {
-  let correctSize = ["S", "XS", "M", "X", "L", "XXL", "XL"];
+  let correctSize = ['S', 'XS', 'M', 'X', 'L', 'XXL', 'XL'];
   return correctSize.includes(Size);
 };
 

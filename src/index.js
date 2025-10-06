@@ -14,12 +14,12 @@ app.use(multer().any());
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
 })
-.then(() => console.log("MongoDb is connected..."))
+.then(() => console.log('MongoDb is connected...'))
 .catch(error => console.log(error));
 
-app.use("/", route);
+app.use('/', route);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
-    console.log("Express app running on port " + PORT);
+    console.log('Express app running on port ' + PORT);
 });

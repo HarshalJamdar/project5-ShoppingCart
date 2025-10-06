@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema.Types.ObjectId
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 const cartSchema = mongoose.Schema({
@@ -11,6 +11,6 @@ const cartSchema = mongoose.Schema({
     }],
     totalPrice : {type: Number, require: true},
     totalItems : {type: Number, require: true}
-},{ timestamps: true })
+},{ timestamps: true });
 
-module.exports = mongoose.model('Cart', cartSchema)
+module.exports = mongoose.model('Cart', cartSchema);

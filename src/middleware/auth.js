@@ -1,17 +1,17 @@
-const jwt = require("jsonwebtoken")
-const { isValidObjectId } = require("mongoose")
-const userModel = require("../models/userModel")
+const jwt = require('jsonwebtoken');
+const { isValidObjectId } = require('mongoose');
+const userModel = require('../models/userModel');
 
 
 let authentication = function (req, res, next) {
     try {
         let token = req.header('Authorization','Bearer Token')
   
-        if (!token) return res.status(400).send({ status: false, message: "Token is required" })
+        if (!token) return res.status(400).send({ status: false, message: 'Token is required' })
     
-        let decodedToken = jwt.verify(token.split(" ")[1], process.env.JWT_KEY,(err, decoded) => {    
+        let decodedToken = jwt.verify(token.split(' ')[1], process.env.JWT_KEY,(err, decoded) => {    
         if (!decoded) {
-        return res.status(401).send({ status: false, message: "Invalid token", err: err.message })
+        return res.status(401).send({ status: false, message: 'Invalid token', err: err.message })
         } else {
         req.userId = decoded.userId
         next();
@@ -20,7 +20,7 @@ let authentication = function (req, res, next) {
     } catch (err) {
         return res.status(500).send({ status: false,  message: err.message })
     }
-}
+};
 
 const authorization = async function (req, res, next) {
     try {
@@ -38,6 +38,6 @@ const authorization = async function (req, res, next) {
     }catch (error) {
         res.status(500).send({ status: false, message: error.message })
     }
-}
+};
 
- module.exports = { authentication ,authorization}
+ module.exports = { authentication, authorization };

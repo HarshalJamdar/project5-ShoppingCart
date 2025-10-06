@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const orderSchema = new mongoose.Schema({
     userId: {
         type: ObjectId,
-        ref: "user",
+        ref: 'user',
         required: true,
         
     },
@@ -31,8 +31,8 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "pending",
-        enum: ["pending", "completed", "cancelled"]
+        default: 'pending',
+        enum: ['pending', 'completed', 'cancelled']
     },
     deletedAt: {
         type: Date
